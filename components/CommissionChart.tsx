@@ -73,8 +73,12 @@ export default function CommissionChart({ refreshKey, role, currentAgent }: {
       <ResponsiveContainer width="100%" height={250}>
         <BarChart data={data}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
+          <XAxis dataKey="name" interval={0} tick={{ fontSize: 12 }} />
+          <YAxis
+            width={60}
+            tick={{ fontSize: 12 }}
+            tickFormatter={(v: number) => (v >= 1000 ? `$${v / 1000}k` : `$${v}`)}
+          />
         <Tooltip
   formatter={(value) =>
     [`$${Number(value).toLocaleString()}`, 'Commission']
